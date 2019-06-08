@@ -1,13 +1,10 @@
 let root;
 
-
-
-
 function setup() {
-  createCanvas(500, 500);
+  createCanvas(1000, 1000);
   let a = createVector(width / 2, height);
-  let b = createVector(width / 2, height - 150);
-  root = new Branch(a, b);
+  let b = createVector(width / 2, height/1.5);
+  root = new Branch(a, b, '#c65f15');
 }
 
 let btn = document.getElementById('scan');
@@ -16,12 +13,11 @@ btn.addEventListener('click', function() {
   root.branches = [];
   let text = document.getElementById('textarea').value;
   let paragraphs = text.split(/\n+/);
-  console.log(text);
   for (let i = 0; i < paragraphs.length; i++) {
     if (paragraphs.length == 1)
-      root.addBranch(0, 'brown');
+      root.addBranch(0, '#c65f15');
     else
-      root.addBranch((-PI / 3) + (2 * PI / (3 * (paragraphs.length - 1))) * i, 'brown');
+      root.addBranch((-PI / 3) + (2 * PI / (3 * (paragraphs.length - 1))) * i, '#c65f15');
     let sentenses = paragraphs[i].split(/\. |\! |\? /);
     for (let j = 0; j < sentenses.length; j++) {
       if (sentenses.length == 1)
@@ -41,28 +37,35 @@ btn.addEventListener('click', function() {
           if (parse[0]){
           switch (parse[0].tag.POST){
             case 'NOUN':
-              color = 'green';
+              color = '#35ff36'; //существительные
               break;
             case 'VERB':
             case 'INFN':
-              color = 'red';
+              color = '#ff362e'; //глаголы и инфинитивы
               break;
             case 'ADJS':
             case 'ADJF':
-              color = 'yellow';
+              color = '#fff22e'; //прилагательные
               break;
             case 'PRTS':
             case 'GRND':
             case 'PRTF':
-              color = '#47ffe9';
+              color = '#FF9000'; //причастия и деепричастия
               break;
             case 'ADVB':
-              color = '#2909ba';
+              color = '#A8FF00'; //наречия
               break;
             case 'PREP':
-              color = '#7307ef';
+              color = '#3E50D9'; // предлоги
+              break;
+            case 'CONJ':
+              color = '##22D8F9'
+              break;
+            case 'NPRO':
+              color = '#FF0770'
               break;
             default:
+              color = '#ffffff';
               break;
           }
         }

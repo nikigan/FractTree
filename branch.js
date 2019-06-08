@@ -2,7 +2,7 @@ function Branch(begin, end, color) {
     this.begin = begin;
     this.end = end;
     this.branches = [];
-    this.color = color || 255;
+    this.color = color || '#ff25a2';
   
   
     this.show = function() {
